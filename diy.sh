@@ -10,7 +10,6 @@
 git clone https://github.com/fw876/helloworld.git package/helloworld
 git clone https://github.com/project-openwrt/luci-app-koolproxyR.git package/koolproxyR
 git clone https://github.com/pymumu/smartdns.git package/smartdns
-git clone https://github.com/Sunnice/luci-app-smartdns2.git package/luci-app-smartdns
 git clone https://github.com/vernesong/OpenClash.git package/luci-app-openclash
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/adguardhome
 git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
@@ -33,3 +32,15 @@ git clone https://github.com/Leo-Jo-My/luci-theme-Butterfly-dark.git package/luc
 git clone https://github.com/Leo-Jo-My/luci-theme-leo.git package/luci-theme-leo
 git clone https://github.com/rosywrt/luci-theme-purple.git package/luci-theme-purple
 git clone https://github.com/Immueggpain/luci-theme-linksysmaterial.git package/luci-theme-linksysmaterial
+
+LUCIBRANCH="lede" #更换此变量
+WORKINGDIR="`pwd`/feeds/luci/applications/luci-app-smartdns"
+mkdir $WORKINGDIR -p
+rm $WORKINGDIR/* -fr
+wget https://github.com/Sunnice/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
+unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
+mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
+rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
+rm $WORKINGDIR/${LUCIBRANCH}.zip
+
+./scripts/feeds install -a
